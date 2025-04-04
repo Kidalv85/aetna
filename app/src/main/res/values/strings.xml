@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AetnaSearch</string>
+    <string name="app_search_text">Aetna search app</string>
 </resources>
