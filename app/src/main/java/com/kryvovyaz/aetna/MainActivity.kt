@@ -39,7 +39,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     // Using viewModel() factory function from Compose
                     CharacterScreen(
+                        text = viewModel.state,
                         onTopBarIconClick = { finish() }
+
                     )
                 }
             }

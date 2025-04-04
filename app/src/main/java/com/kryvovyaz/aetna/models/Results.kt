@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Results(
 
-    @SerializedName("id") var id: Int? = null,
+    @SerializedName("id") var id: Long? = null,
     @SerializedName("name") var name: String? = null,
     @SerializedName("status") var status: String? = null,
     @SerializedName("species") var species: String? = null,

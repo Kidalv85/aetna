@@ -3,24 +3,15 @@ package com.kryvovyaz.aetna.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.kryvovyaz.aetna.R
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -37,19 +28,20 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 
-//import com.kryvovyaz.aetna.viewmodel.CharacterViewModel
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterScreen(
-    onTopBarIconClick :  () -> Unit
+    onTopBarIconClick: () -> Unit,
+    text: MutableState<String>
 ) {
     Scaffold(
         topBar = {
@@ -59,9 +51,9 @@ fun CharacterScreen(
                     IconButton(onClick = onTopBarIconClick) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription =null,
+                            contentDescription = null,
                             modifier = Modifier.fillMaxSize()
-                            )
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -69,28 +61,34 @@ fun CharacterScreen(
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 title = {
-                    Text(text = "Aetna Search" )
+                    Text(text = "Aetna Search")
                 }
             )
         },
 
-    content = { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            SearchBar(
-                text = "",
-                readOnly = false,
-                onValueChange = {
-                   // event(SearchEvent.UpdateSearchQuery(it))
-                                },
-                onSearch = {
-                    //event(SearchEvent.SearchNews)
-                }
-            )
-            Spacer(modifier = Modifier.height(4.dp))
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                SearchBar(
+                    text = "",
+                    readOnly = false,
+                    onValueChange = {
+                        // event(SearchEvent.UpdateSearchQuery(it))
+                    },
+                    onSearch = {
+                        //event(SearchEvent.SearchNews)
+                    }
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = text.value,
+                    modifier = Modifier.fillMaxSize(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.Black
+                )
 
 //            state.articles?.let {
 //                val articles = it.collectAsLazyPagingItems()
@@ -140,15 +138,13 @@ fun CharacterScreen(
 ////                        modifier = Modifier.fillMaxSize()
 ////                    )
 //                }
-            //  }
+                //  }
+            }
         }
-    }
     )
 }
 
 // Rest of the components remain the same...
-
-
 
 
 @Composable
@@ -167,8 +163,8 @@ private fun SearchBar(
         MutableInteractionSource()
     }
     val isClicked = interactionSource.collectIsPressedAsState().value
-    LaunchedEffect(key1 = isClicked){
-        if(isClicked){
+    LaunchedEffect(key1 = isClicked) {
+        if (isClicked) {
             onClick?.invoke()
         }
     }
@@ -183,7 +179,7 @@ private fun SearchBar(
             readOnly = readOnly,
             leadingIcon = {
                 Icon(
-                    imageVector =  Icons.Outlined.Search,
+                    imageVector = Icons.Outlined.Search,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
                     tint = Color.White
@@ -243,8 +239,13 @@ fun SearchBarPreview() {
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
-private fun CharacterScreenPreview(){
+private fun CharacterScreenPreview() {
     AetnaTheme {
-        CharacterScreen({})
+        CharacterScreen(
+            text = remember {
+                mutableStateOf("")
+            },
+            onTopBarIconClick = {}
+        )
     }
 }

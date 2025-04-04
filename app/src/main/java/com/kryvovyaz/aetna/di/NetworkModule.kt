@@ -1,7 +1,7 @@
 package com.kryvovyaz.aetna.di
 
 import com.kryvovyaz.aetna.api.CharacterService
-import com.vladkryvovyaz.mvvm_hilt_test.util.BASE_URL
+import com.kryvovyaz.aetna.util.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

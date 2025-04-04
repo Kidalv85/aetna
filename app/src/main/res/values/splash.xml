@@ -2,7 +2,7 @@
 <resources>
     <style name="App.Starting.Theme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#FFFFFF</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
-        <item name="postSplashScreenTheme">@style/Theme.DailyNews</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/aetna</item>
+        <item name="postSplashScreenTheme">@style/Theme.AetnaSearch</item>
     </style>
 </resources>
