@@ -1,4 +1,36 @@
 <resources>
     <string name="app_name">AetnaSearch</string>
-    <string name="app_search_text">Aetna search app</string>
+    <string name="app_search_text">Search</string>
+    <string name="filter_status">Status</string>
+    <string name="filter_species">Species</string>
+    <string name="filter_type">Type</string>
+    <string name="filter_none">None</string>
+    <string name="app_search_criteria">Please enter you criteria</string>
+    <string name="app_search_results">Found $ result(s) for your query \'!\' </string>
+    <string name="app_unknown">unknown</string>
+    <string name="app_unknown_name">Unknown Name</string>
+    <string name="app_unknown_species">Unknown Species</string>
+    <string name="app_unknown_status">Unknown Status</string>
+    <string name="app_unknown_origin">Unknown Origin</string>
+    <string name="app_unknown_type">Unknown Type</string>
+    <string name="app_species">Species :</string>
+    <string name="app_status">Status :</string>
+    <string name="app_origin">Origin :</string>
+    <string name="app_type">Type :</string>
+    <string name="app_created">Created :</string>
+    <string name="app_image">Image:</string>
+
+    //accessibility descriptions
+    <string name="app_loading_indicator_description">Loading indicator</string>
+    <string name="app_character_image_description">Image</string>
+    <string name="app_search_icon_description">Clear search icon</string>
+    <string name="app_search_screen_description">Character search screen</string>
+    <string name="app_dropdown_filter_icon_description">Dropdown filter icon</string>
+    <string name="app_clear_search_icon_description">Clear search icon </string>
+    <string name="app_search_criteria_description">App criteria search</string>
+    <string name="app_filter_criteria_description">App criteria filter</string>
+    <string name="app_character_name_description">Character name</string>
+    <string name="app_back_icon_description">Back icon</string>
+    <string name="app_details_screen_description">Character Details Screen</string>
+    <string name="app_share_icon_description">Share Character Details Button</string>
 </resources>

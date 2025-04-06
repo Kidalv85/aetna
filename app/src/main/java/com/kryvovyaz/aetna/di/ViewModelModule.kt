@@ -1,6 +1,5 @@
 package com.kryvovyaz.aetna.di
 
-import com.kryvovyaz.aetna.api.CharacterService
 import com.kryvovyaz.aetna.repository.CharacterRepositoryImpl
 import com.kryvovyaz.aetna.viewmodel.CharacterViewModel
 import dagger.Module

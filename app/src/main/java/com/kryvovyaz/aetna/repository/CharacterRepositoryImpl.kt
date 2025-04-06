@@ -16,11 +16,11 @@ class CharacterRepositoryImpl @Inject constructor(private val characterService: 
                 return@withContext if (rootResponse.results.isNotEmpty()) {
                     CharactersContainerResult.Success(rootResponse.results)
                 } else {
-                    CharactersContainerResult.Failure()
+                    CharactersContainerResult.Failure
                 }
             } catch (ex: Exception) {
                 return@withContext CharactersContainerResult
-                    .Failure()
+                    .Failure
             }
         }
 }
