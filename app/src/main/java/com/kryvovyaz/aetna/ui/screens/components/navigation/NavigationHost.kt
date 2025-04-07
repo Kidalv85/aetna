@@ -31,7 +31,7 @@ fun NavigationHost(
     onShareCharacterDetails: (Character) -> Unit,
     onFilterSelected: (FilterType) -> Unit,
     groupedCharactersList: State<Map<String, List<Character>>>,
-    isFilterSelected: State<Boolean>
+    isFilterSelected: State<Boolean>,
 ) {
     NavHost(navController = navController, startDestination = NAVIGATION_SCREEN_SEARCH) {
         composable(NAVIGATION_SCREEN_SEARCH) {

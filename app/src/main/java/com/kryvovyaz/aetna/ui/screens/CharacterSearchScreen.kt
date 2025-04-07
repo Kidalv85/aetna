@@ -21,6 +21,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -42,6 +43,7 @@ import com.kryvovyaz.aetna.util.DOLLAR
 import com.kryvovyaz.aetna.util.EXCLAMATION
 import com.kryvovyaz.aetna.util.NAVIGATION_SCREEN_DETAILS_ROOT
 import com.kryvovyaz.aetna.ui.theme.PurpleDarkGrey
+import com.kryvovyaz.aetna.util.LOADING_INDICATOR_TAG
 
 @Composable
 fun CharacterSearchScreen(
@@ -106,7 +108,8 @@ fun CharacterSearchScreen(
                     .semantics {
                         contentDescription =
                             context.getString(R.string.app_loading_indicator_description)
-                    },
+                    }
+                    .testTag(LOADING_INDICATOR_TAG),
                 color = PurpleGrey,
                 strokeWidth = strokeWidth,
                 trackColor = PurpleDarkGrey,

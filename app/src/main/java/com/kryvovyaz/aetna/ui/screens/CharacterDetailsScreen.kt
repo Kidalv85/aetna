@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -33,6 +34,8 @@ import com.kryvovyaz.aetna.ui.theme.defaultPadding
 import com.kryvovyaz.aetna.ui.theme.padding_64
 import com.kryvovyaz.aetna.ui.theme.padding_80
 import com.kryvovyaz.aetna.ui.theme.smallPadding
+import com.kryvovyaz.aetna.util.CHARACTER_IMAGE_TAG
+import com.kryvovyaz.aetna.util.SHARE_ICON_TAG
 
 @Composable
 fun CharacterDetailsScreen(
@@ -78,7 +81,8 @@ fun CharacterDetailsScreen(
                         contentDescription = "${stringResource(R.string.app_character_image_description)} ${charactersList.value[index].name}",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .wrapContentHeight(),
+                            .wrapContentHeight()
+                            .testTag(CHARACTER_IMAGE_TAG),
                         contentScale = ContentScale.FillWidth
                     )
 
@@ -139,6 +143,7 @@ fun CharacterDetailsScreen(
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(defaultPadding)
+                        .testTag(SHARE_ICON_TAG)
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Share,

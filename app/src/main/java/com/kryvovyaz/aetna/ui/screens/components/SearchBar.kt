@@ -11,12 +11,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import com.kryvovyaz.aetna.R
 import com.kryvovyaz.aetna.ui.theme.defaultIconSize
 import com.kryvovyaz.aetna.ui.theme.strokeWidthSmall
+import com.kryvovyaz.aetna.util.DELETE_ICON_TAG
+import com.kryvovyaz.aetna.util.FILTER_ICON_TAG
 
 enum class FilterType {
     STATUS,
@@ -69,7 +72,8 @@ internal fun SearchBar(
                         .size(defaultIconSize)
                         .clickable {
                             setExpanded(!expanded)
-                        },
+                        }
+                        .testTag(FILTER_ICON_TAG),
                     tint = MaterialTheme.colorScheme.primary
                 )
             },
@@ -80,7 +84,8 @@ internal fun SearchBar(
                         contentDescription = stringResource(R.string.app_clear_search_icon_description),
                         modifier = Modifier
                             .size(defaultIconSize)
-                            .clickable { onClear() },
+                            .clickable { onClear() }
+                            .testTag(DELETE_ICON_TAG),
                         tint = Color.Red
                     )
                 }

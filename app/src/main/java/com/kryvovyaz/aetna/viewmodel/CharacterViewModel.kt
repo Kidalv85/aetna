@@ -38,9 +38,9 @@ class CharacterViewModel @Inject constructor(private val repository: CharacterRe
     private val selectedFilter = mutableStateOf(FilterType.NONE)
     private val _groupedCharactersList = mutableStateOf<Map<String, List<Character>>>(emptyMap())
     val groupedCharactersList: State<Map<String, List<Character>>> = _groupedCharactersList
-
     private val _isGrouped = mutableStateOf(false)
     val isGrouped: State<Boolean> = _isGrouped
+    val isShowErrorDialog = mutableStateOf(false)
 
     fun onSearchQueryChange(query: String) {
         searchText.value = query
@@ -50,22 +50,17 @@ class CharacterViewModel @Inject constructor(private val repository: CharacterRe
                 clearSearchState()
             } else {
                 isShowLoadingIndicator.value = true
-                when (val result = repository.fetchMemeContainer(query.trim())) {
+                when (val result = repository.fetchCharactersContainer(query.trim())) {
                     is CharactersContainerResult.Failure -> {
-                        isShowResultText.value = true
-                        isShowLoadingIndicator.value = false
+                        updateLoadingState()
+                        showAlertDialog()
                     }
 
                     is CharactersContainerResult.Success -> {
-                        isShowResultText.value = true
-                        isShowLoadingIndicator.value = false
+                        updateLoadingState()
                         _charactersList.clear()
                         _charactersList.addAll(result.response)
-                        if (selectedFilter.value != FilterType.NONE) {
-                            onFilterSelected(selectedFilter.value)
-                        } else {
-                            resetGrouping()
-                        }
+                        updateFilteredList()
                     }
                 }
             }
@@ -73,15 +68,19 @@ class CharacterViewModel @Inject constructor(private val repository: CharacterRe
     }
 
     fun formatDate(dateString: String?): String {
+        if (dateString.isNullOrEmpty()) {
+            return UNKNOWN_DATE
+        }
         return try {
             val sdf = SimpleDateFormat(DATE_FORMAT_FROM_API, Locale.getDefault())
-            val date = sdf.parse(dateString ?: EMPTY)
+            val date = sdf.parse(dateString)
             val formattedDate = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
-            formattedDate.format(date ?: Date())
+            formattedDate.format(date)
         } catch (e: Exception) {
             UNKNOWN_DATE
         }
     }
+
 
     fun clearSearchState() {
         searchText.value = EMPTY
@@ -96,12 +95,12 @@ class CharacterViewModel @Inject constructor(private val repository: CharacterRe
             selectedFilter.value = filterType
             when (filterType) {
                 FilterType.STATUS -> {
-                    val groupedCharacters = _charactersList.groupBy { it.status ?: UNKNOWN  }
+                    val groupedCharacters = _charactersList.groupBy { it.status ?: UNKNOWN }
                     updateGroupedCharacters(groupedCharacters)
                 }
 
                 FilterType.SPECIES -> {
-                    val groupedCharacters = _charactersList.groupBy { it.species ?: UNKNOWN  }
+                    val groupedCharacters = _charactersList.groupBy { it.species ?: UNKNOWN }
                     updateGroupedCharacters(groupedCharacters)
                 }
 
@@ -127,5 +126,26 @@ class CharacterViewModel @Inject constructor(private val repository: CharacterRe
     private fun resetGrouping() {
         _groupedCharactersList.value = emptyMap()
         _isGrouped.value = false
+    }
+
+    private fun updateLoadingState() {
+        isShowResultText.value = true
+        isShowLoadingIndicator.value = false
+    }
+
+    private fun updateFilteredList() {
+        if (selectedFilter.value != FilterType.NONE) {
+            onFilterSelected(selectedFilter.value)
+        } else {
+            resetGrouping()
+        }
+    }
+
+    fun hideAlertDialog() {
+        isShowErrorDialog.value = false
+    }
+
+    fun showAlertDialog() {
+        isShowErrorDialog.value = true
     }
 }

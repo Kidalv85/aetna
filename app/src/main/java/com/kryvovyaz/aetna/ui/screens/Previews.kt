@@ -40,7 +40,7 @@ private fun CharacterScreenPreview() {
             },
             groupedCharactersList = remember {
                 mutableStateOf(mapOf())
-            }
+            },
         )
     }
 }

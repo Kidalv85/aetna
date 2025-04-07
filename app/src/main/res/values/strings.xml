@@ -5,7 +5,7 @@
     <string name="filter_species">Species</string>
     <string name="filter_type">Type</string>
     <string name="filter_none">None</string>
-    <string name="app_search_criteria">Please enter you criteria</string>
+    <string name="app_search_criteria">Please enter your criteria</string>
     <string name="app_search_results">Found $ result(s) for your query \'!\' </string>
     <string name="app_unknown">unknown</string>
     <string name="app_unknown_name">Unknown Name</string>
@@ -13,12 +13,17 @@
     <string name="app_unknown_status">Unknown Status</string>
     <string name="app_unknown_origin">Unknown Origin</string>
     <string name="app_unknown_type">Unknown Type</string>
+    <string name="app_unknown_image">No Image</string>
     <string name="app_species">Species :</string>
     <string name="app_status">Status :</string>
     <string name="app_origin">Origin :</string>
     <string name="app_type">Type :</string>
     <string name="app_created">Created :</string>
+    <string name="app_nane_text">Name :</string>
     <string name="app_image">Image:</string>
+    <string name="app_ok">OK</string>
+    <string name="app_something_went_wrong">Something went wrong</string>
+    <string name="app_error_title">Oh no…</string>
 
     //accessibility descriptions
     <string name="app_loading_indicator_description">Loading indicator</string>

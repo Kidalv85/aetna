@@ -9,7 +9,7 @@ import javax.inject.Inject
 class CharacterRepositoryImpl @Inject constructor(private val characterService: CharacterService) :
     CharacterRepository {
 
-    override suspend fun fetchMemeContainer(name: String): CharactersContainerResult =
+    override suspend fun fetchCharactersContainer(name: String): CharactersContainerResult =
         withContext(Dispatchers.IO) {
             try {
                 val rootResponse = characterService.getCharacters(name)
